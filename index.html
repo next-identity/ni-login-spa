@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Next Identity Simple Login</title>
-    <script src="https://cdn.jsdelivr.net/gh/next-reason/ni-js-sdk/next-identity-client.js"></script>
+    <!-- Uncomment this line to use the latest version of the SDK from jsdelivr -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/next-reason/ni-js-sdk@latest/next-identity-client.js"></script> -->
+    <!-- Or reference the js directly to have more control -->
+    <script src="next-identity-client.js"></script>
 </head>
 <body>
     <main>
@@ -24,13 +27,17 @@
 
     </main>
 
+    <div id="idToken-info" style="display: none;">
+        <h2>ID Token</h2>
+        <pre id="idToken-details"></pre>
+    </div>
+
     <div id="profile-info" style="display: none;">
-        <h2>User Profile</h2>
+        <h2>User Info</h2>
         <pre id="profile-details"></pre>
         <button id="logout-button">Log Out</button>
     </div>
 
     <script src="config.js"></script>
-
 </body>
 </html>

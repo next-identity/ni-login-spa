@@ -6,3 +6,4 @@ const config = {
     scopes: ['openid', 'profile', 'email'], // Add the scopes you need
 };
 
+
