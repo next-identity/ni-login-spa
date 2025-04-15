@@ -1,5 +1,4 @@
-<script>
-  (function() {
+(function() {
     'use strict';
 
     // Configuration
@@ -189,4 +188,3 @@
         }, 10);
     }
   })();
-</script>
