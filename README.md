@@ -27,7 +27,15 @@ const config = {
 };
 ```
 
-## 3. Modify the OpenID Connect SDK (Optional)
+## 3. Update your redirect URI list to include localhost (in console)
+
+Update the client configuration within the next identity dashboard to include a redirect uri for localhost callback url:
+
+https://localhost:3000/callback
+
+Without this step you will get an invalid redirect parameter error when you try to click login once the project is running.
+
+## 4. Modify the OpenID Connect SDK (Optional)
 
 By default, the project uses the OpenID Connect SDK from the CDN:
 
@@ -43,7 +51,7 @@ git clone https://github.com/next-reason/ni-js-sdk.git
 
 Follow the README instructions in that repository to build and link it into your project.
 
-## 4. Enable HTTPS Locally with mkcert
+## 5. Enable HTTPS Locally with mkcert
 
 Next Identity requires HTTPS as a callback URL. To use HTTPS on localhost, install `mkcert`:
 
@@ -92,7 +100,7 @@ module.exports = \{\
 };
 ```
 
-## 5. Start Your Local Server
+## 6. Start Your Local Server
 
 ```sh
 npx serve -s . -l 3000 --ssl-cert localhost.pem --ssl-key localhost-key.pem
