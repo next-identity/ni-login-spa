@@ -5,9 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Next Identity Simple Login</title>
     <!-- use the latest version of the SDK from jsdelivr -->
-   <script src="https://cdn.jsdelivr.net/gh/next-reason/ni-js-sdk@latest/next-identity-client.js"></script> 
+  <!-- <script src="https://cdn.jsdelivr.net/gh/next-reason/ni-js-sdk@latest/next-identity-client.js"></script> -->
     <!-- Or uncomment this line to reference the js directly to have more control -->
-    <!-- <script src="next-identity-client.js"></script> -->
+    <script src="next-identity-client.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #logout-button {
+            background-color: #dc3545;
+            display: none;
+        }
+        #logout-button:hover {
+            background-color: #c82333;
+        }
+        .user-info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        #user-display {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        #user-email {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+
 </head>
 <body>
     <main>
@@ -17,26 +74,46 @@
                 <p>This demo shows you how to easily integrate secure login into your single-page applications.</p>
                 <section class="instructions">
                     <div class="container">
-                        <p>Learn how to modify the Javascript SDK with the <a href="https://github.com/next-reason/ni-js-sdk" target="_blank">Source Code</a> and the <a href="https://next-identity-multi-cloud.readme.io/docs/javascript-spa-sdk-1#/" target="_blank">Documentation</a></p>
+                        <p>Learn how to modify the Javascript SDK with the <a href="https://github.com/next-reason/ni-spa-sdk" target="_blank">Source Code</a></p>
                     </div>
                 </section>
                 
-                <button id="login-button">Log In</button>
-            </div>
-        </section>
+            
+       
 
-    </main>
+  
+    <div class="button-group">
+            <button id="login-button">Login</button>
+           
+            <button id="edit-profile-button">Edit Profile</button>
+            <button id="logout-button">Logout</button>
+        </div>
+        
+        <div id="user-info-div">
+             <h2>User Info</h2>
+            <div id="user-display"></div>
+            <div id="user-email"></div>
+        </div>
 
     <div id="idToken-info" style="display: none;">
         <h2>ID Token</h2>
         <pre id="idToken-details"></pre>
     </div>
 
-    <div id="profile-info" style="display: none;">
-        <h2>User Info</h2>
+    <div id="textContent" style="display: none;">
+       
         <pre id="profile-details"></pre>
-        <button id="logout-button">Log Out</button>
+       
     </div>
+
+         </div>
+        </section>
+
+      </main>
+
+
+   
+
 
     <script src="config.js"></script>
 </body>
