@@ -5,20 +5,31 @@ internal-reference/
 node_modules/
 .pnp
 .pnp.js
+.pnp.cjs
 
 # Testing
 coverage/
+.nyc_output/
 
-# Production
+# Production builds
 build/
 dist/
+out/
 
-# Environment variables
+# Next.js
+frontend/.next/
+frontend/out/
+
+# Prisma
+backend/prisma/*.db
+backend/prisma/*.db-journal
+
+# Environment variables (NEVER commit these)
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*
+!.env.example
+!env.example
+*.local
 
 # Logs
 npm-debug.log*
@@ -26,6 +37,8 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
+logs/
+*.log
 
 # OS
 .DS_Store
@@ -42,9 +55,26 @@ Thumbs.db
 *.swp
 *.swo
 *~
+*.sublime-workspace
+*.sublime-project
+
+# Vercel
+.vercel
+
+# Railway
+.railway
+
+# Turbo
+.turbo
+
+# TypeScript
+*.tsbuildinfo
 
 # Misc
 .cache/
 temp/
 tmp/
+*.pid
+*.seed
+*.pid.lock
 
