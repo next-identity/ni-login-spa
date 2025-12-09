@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String          @id @default(cuid())
+  email         String          @unique
+  name          String?
+  idpId         String          @unique // ID from the Identity Provider
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  customerUsers CustomerUser[]
+  invites       Invite[]
+
+  @@index([idpId])
+  @@index([email])
+}
+
+model Customer {
+  id            String          @id @default(cuid())
+  name          String
+  slug          String          @unique
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  customerUsers CustomerUser[]
+
+  @@index([slug])
+}
+
+model CustomerUser {
+  id         String   @id @default(cuid())
+  userId     String
+  customerId String
+  role       Role     @default(READ_ONLY)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, customerId])
+  @@index([userId])
+  @@index([customerId])
+}
+
+model Invite {
+  id         String       @id @default(cuid())
+  email      String
+  customerId String
+  role       Role         @default(READ_ONLY)
+  status     InviteStatus @default(PENDING)
+  inviterId  String
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  
+  inviter User @relation(fields: [inviterId], references: [id], onDelete: Cascade)
+
+  @@unique([email, customerId])
+  @@index([email])
+  @@index([customerId])
+  @@index([status])
+}
+
+enum Role {
+  ADMIN
+  READ_ONLY
+}
+
+enum InviteStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+}
